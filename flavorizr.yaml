@@ -1,0 +1,21 @@
+flavors:
+  apple:
+    app:
+      name: "weather_app_gse_dev"
+
+    android:
+      applicationId: "com.example.weather_app_gse_dev"  
+    ios:
+      bundleId: "com.example.weather_app_gse_dev"
+    macos:
+      bundleId: "com.example.weather_app_gse_dev"  
+  banana:
+    app:
+      name: "weather_app_gse_prod"
+  
+    android:
+      applicationId: "com.example.weather_app_gse"
+    ios:
+      bundleId: "com.example.weather_app_gse"
+    macos:
+      bundleId: "com.example.weather_app_gse"

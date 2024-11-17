@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "weather_app_gse_dev (debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "args": ["--flavor", "apple", "-t", "lib/main_apple.dart"]
+        },
+        {
+            "name": "weather_app_gse_dev (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": ["--flavor", "apple", "-t", "lib/main_apple.dart"]
+        },
+        {
+            "name": "weather_app_gse_dev (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": ["--flavor", "apple", "-t", "lib/main_apple.dart"]
+        },
+        {
+            "name": "weather_app_gse_prod (debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "args": ["--flavor", "banana", "-t", "lib/main_banana.dart"]
+        },
+        {
+            "name": "weather_app_gse_prod (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": ["--flavor", "banana", "-t", "lib/main_banana.dart"]
+        },
+        {
+            "name": "weather_app_gse_prod (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": ["--flavor", "banana", "-t", "lib/main_banana.dart"]
+        }
+    ]
+}
