@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../config/flavor/flavors.dart';
+import '../config/routes/auto_observer.dart';
 import '../config/routes/auto_router_manager.dart';
 
 class Root extends StatelessWidget {
@@ -27,13 +29,27 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    RootStackRouter appRouter = context.watch<AutoRouterManager>().state;
+
+    return MaterialApp.router(
+      routerConfig: appRouter.config(
+        navigatorObservers: () => [
+          MyObserver(),
+        ],
+      ),
+      darkTheme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
       title: F.title,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home:  Scaffold(
-        body: Text('Hello, ${F.title}'),
+        useMaterial3: true,
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            iconColor: Colors.white,
+            textStyle: const TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
     );
   }
