@@ -8,41 +8,41 @@
             "name": "weather_app_gse_dev (debug mode)",
             "request": "launch",
             "type": "dart",
-            "args": ["--flavor", "apple", "-t", "lib/main_apple.dart"]
+            "args": ["--flavor", "weather_app_gse_dev", "-t", "lib/main_weather_app_gse_dev.dart"]
         },
         {
             "name": "weather_app_gse_dev (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "args": ["--flavor", "apple", "-t", "lib/main_apple.dart"]
+            "args": ["--flavor", "weather_app_gse_dev", "-t", "lib/main_weather_app_gse_dev.dart"]
         },
         {
             "name": "weather_app_gse_dev (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "args": ["--flavor", "apple", "-t", "lib/main_apple.dart"]
+            "args": ["--flavor", "weather_app_gse_dev", "-t", "lib/main_weather_app_gse_dev.dart"]
         },
         {
             "name": "weather_app_gse_prod (debug mode)",
             "request": "launch",
             "type": "dart",
-            "args": ["--flavor", "banana", "-t", "lib/main_banana.dart"]
+            "args": ["--flavor", "weather_app_gse", "-t", "lib/main_weather_app_gse.dart"]
         },
         {
             "name": "weather_app_gse_prod (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "args": ["--flavor", "banana", "-t", "lib/main_banana.dart"]
+            "args": ["--flavor", "weather_app_gse", "-t", "lib/main_weather_app_gse.dart"]
         },
         {
             "name": "weather_app_gse_prod (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "args": ["--flavor", "banana", "-t", "lib/main_banana.dart"]
+            "args": ["--flavor", "weather_app_gse", "-t", "lib/main_weather_app_gse.dart"]
         }
     ]
 }

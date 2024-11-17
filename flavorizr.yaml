@@ -1,5 +1,5 @@
 flavors:
-  apple:
+  weather_app_gse_dev:
     app:
       name: "weather_app_gse_dev"
 
@@ -9,7 +9,7 @@ flavors:
       bundleId: "com.example.weather_app_gse_dev"
     macos:
       bundleId: "com.example.weather_app_gse_dev"  
-  banana:
+  weather_app_gse:
     app:
       name: "weather_app_gse_prod"
   
