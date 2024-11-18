@@ -6,6 +6,7 @@ import '../config/flavor/flavors.dart';
 import '../config/routes/auto_observer.dart';
 import '../config/routes/auto_router_manager.dart';
 import '../config/theme/app_theme.dart';
+import 'welcome/presentation/bloc/welcome_bloc.dart';
 
 class Root extends StatelessWidget {
   const Root({super.key});
@@ -16,6 +17,9 @@ class Root extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AutoRouterManager(),
+        ),
+        BlocProvider(
+          create: (context) => WelcomeBloc(),
         ),
       ],
       child: const App(),
