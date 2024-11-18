@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app_gse/module/home/presentation/bloc/home_bloc.dart';
 
 import '../config/flavor/flavors.dart';
 import '../config/routes/auto_observer.dart';
@@ -20,6 +21,9 @@ class Root extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => WelcomeBloc(),
+        ),
+        BlocProvider(
+          create: (context) => HomeBloc(),
         ),
       ],
       child: const App(),

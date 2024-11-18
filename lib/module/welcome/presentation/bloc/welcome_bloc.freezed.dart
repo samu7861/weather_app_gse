@@ -291,6 +291,7 @@ abstract class _GetPermissions implements WelcomeEvent {
 mixin _$WelcomeState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool? get isPermissionGranted => throw _privateConstructorUsedError;
+  Position? get position => throw _privateConstructorUsedError;
 
   /// Create a copy of WelcomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -305,7 +306,7 @@ abstract class $WelcomeStateCopyWith<$Res> {
           WelcomeState value, $Res Function(WelcomeState) then) =
       _$WelcomeStateCopyWithImpl<$Res, WelcomeState>;
   @useResult
-  $Res call({bool isLoading, bool? isPermissionGranted});
+  $Res call({bool isLoading, bool? isPermissionGranted, Position? position});
 }
 
 /// @nodoc
@@ -325,6 +326,7 @@ class _$WelcomeStateCopyWithImpl<$Res, $Val extends WelcomeState>
   $Res call({
     Object? isLoading = null,
     Object? isPermissionGranted = freezed,
+    Object? position = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -335,6 +337,10 @@ class _$WelcomeStateCopyWithImpl<$Res, $Val extends WelcomeState>
           ? _value.isPermissionGranted
           : isPermissionGranted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Position?,
     ) as $Val);
   }
 }
@@ -347,7 +353,7 @@ abstract class _$$WelcomeStateImplCopyWith<$Res>
       __$$WelcomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool? isPermissionGranted});
+  $Res call({bool isLoading, bool? isPermissionGranted, Position? position});
 }
 
 /// @nodoc
@@ -365,6 +371,7 @@ class __$$WelcomeStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isPermissionGranted = freezed,
+    Object? position = freezed,
   }) {
     return _then(_$WelcomeStateImpl(
       isLoading: null == isLoading
@@ -375,6 +382,10 @@ class __$$WelcomeStateImplCopyWithImpl<$Res>
           ? _value.isPermissionGranted
           : isPermissionGranted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Position?,
     ));
   }
 }
@@ -382,17 +393,20 @@ class __$$WelcomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$WelcomeStateImpl extends _WelcomeState {
-  _$WelcomeStateImpl({required this.isLoading, this.isPermissionGranted})
+  _$WelcomeStateImpl(
+      {required this.isLoading, this.isPermissionGranted, this.position})
       : super._();
 
   @override
   final bool isLoading;
   @override
   final bool? isPermissionGranted;
+  @override
+  final Position? position;
 
   @override
   String toString() {
-    return 'WelcomeState(isLoading: $isLoading, isPermissionGranted: $isPermissionGranted)';
+    return 'WelcomeState(isLoading: $isLoading, isPermissionGranted: $isPermissionGranted, position: $position)';
   }
 
   @override
@@ -403,11 +417,14 @@ class _$WelcomeStateImpl extends _WelcomeState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isPermissionGranted, isPermissionGranted) ||
-                other.isPermissionGranted == isPermissionGranted));
+                other.isPermissionGranted == isPermissionGranted) &&
+            (identical(other.position, position) ||
+                other.position == position));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isPermissionGranted);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, isPermissionGranted, position);
 
   /// Create a copy of WelcomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -421,13 +438,16 @@ class _$WelcomeStateImpl extends _WelcomeState {
 abstract class _WelcomeState extends WelcomeState {
   factory _WelcomeState(
       {required final bool isLoading,
-      final bool? isPermissionGranted}) = _$WelcomeStateImpl;
+      final bool? isPermissionGranted,
+      final Position? position}) = _$WelcomeStateImpl;
   _WelcomeState._() : super._();
 
   @override
   bool get isLoading;
   @override
   bool? get isPermissionGranted;
+  @override
+  Position? get position;
 
   /// Create a copy of WelcomeState
   /// with the given fields replaced by the non-null parameter values.

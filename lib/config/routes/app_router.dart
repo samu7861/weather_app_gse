@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:weather_app_gse/module/welcome/presentation/screen/welcome_screen.dart';
 
 import '../../module/home/presentation/screen/home_screen.dart';
@@ -14,7 +16,9 @@ class AppRouter extends _$AppRouter {
           page: WelcomeRoute.page,
           path: WelcomeScreen.path,
           initial: true,
-          children: [],
+          children: const [
+            
+          ],
         ),
 
         AutoRoute(

@@ -14,43 +14,55 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-        final state = context.watch<WelcomeBloc>().state;
-
-
     return Scaffold(
-      body: SizedBox.expand(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text('Welcome'),
-            const Text(
-              "Weather App",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+      body: BlocListener<WelcomeBloc, WelcomeState>(
+        listener: (context, state) {
+          if (state.isPermissionGranted == true) {
+            if (state.position != null) {
+              context.router.push(HomeRoute(position: state.position!));
+            }
+          }
+        },
+        child: BlocBuilder<WelcomeBloc, WelcomeState>(
+          builder: (context, state) {
+            if (state.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            return SizedBox.expand(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text('Welcome'),
+                  const Text(
+                    "Weather App",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text("For going further, please allow permissions"),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      context
+                          .read<WelcomeBloc>()
+                          .add(const WelcomeEvent.getPermissions());
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(Colors.blue),
+                    ),
+                    child: const Text(
+                      "Allow",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 20),
-            const Text("For going further, please allow permissions"),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                context.read<WelcomeBloc>().add(const WelcomeEvent.getPermissions());
-                if (state.isPermissionGranted == true) {
-                  context.router.replace(const HomeRoute());
-                }
-              },
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.blue),
-              ),
-              child: const Text(
-                "Allow",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

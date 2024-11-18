@@ -7,12 +7,14 @@ class WelcomeState with _$WelcomeState {
 
   factory WelcomeState({
     required bool isLoading,
-    bool? isPermissionGranted
+    bool? isPermissionGranted,
+    Position? position
 
   }) = _WelcomeState;
 
   factory WelcomeState.initial() => WelcomeState(
     isLoading: false,
-    isPermissionGranted: false
+    isPermissionGranted: false,
+    position: null
   );
 }

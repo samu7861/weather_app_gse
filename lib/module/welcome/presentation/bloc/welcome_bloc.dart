@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 part 'welcome_event.dart';
@@ -24,33 +25,48 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
 
   FutureOr<void> _onGetPermissions(
       _GetPermissions event, Emitter<WelcomeState> emit) async {
-    final status = await Permission.location.status;
-    if (status.isGranted) {
-      emit(
-        state.copyWith(
-          isLoading: false,
-          isPermissionGranted: true,
-        ),
-      );
-      return;
-    }
+    emit(state.copyWith(isLoading: true));
 
-    final result = await Permission.location.request();
-    if (result.isGranted) {
-      emit(
-        state.copyWith(
-          isLoading: false,
-          isPermissionGranted: true,
-        ),
-      );
-    } else if (result.isPermanentlyDenied) {
-      emit(
-        state.copyWith(
-          isLoading: false,
-          isPermissionGranted: false,
-        ),
-      );
-    } else {
+    try {
+      final status = await Permission.location.status;
+      if (status.isGranted) {
+        final position = await Geolocator.getCurrentPosition();
+        emit(
+          state.copyWith(
+            isLoading: true,
+            isPermissionGranted: true,
+            position: position,
+          ),
+        );
+        return;
+      }
+
+      final result = await Permission.location.request();
+      if (result.isGranted) {
+        final position = await Geolocator.getCurrentPosition();
+        emit(
+          state.copyWith(
+            isLoading: false,
+            isPermissionGranted: true,
+            position: position,
+          ),
+        );
+      } else if (result.isPermanentlyDenied) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            isPermissionGranted: false,
+          ),
+        );
+      } else {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            isPermissionGranted: false,
+          ),
+        );
+      }
+    } catch (e) {
       emit(
         state.copyWith(
           isLoading: false,
