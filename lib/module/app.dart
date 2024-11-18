@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../config/flavor/flavors.dart';
 import '../config/routes/auto_observer.dart';
 import '../config/routes/auto_router_manager.dart';
+import '../config/theme/app_theme.dart';
 
 class Root extends StatelessWidget {
   const Root({super.key});
@@ -37,20 +38,10 @@ class App extends StatelessWidget {
           MyObserver(),
         ],
       ),
-      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       title: F.title,
-      theme: ThemeData(
-        useMaterial3: true,
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            iconColor: Colors.white,
-            textStyle: const TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
+      theme: AppTheme().lightTheme,
+      darkTheme: AppTheme().darkTheme,
     );
   }
 }
