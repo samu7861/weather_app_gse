@@ -1,3 +1,5 @@
+import 'package:weather_app_gse/module/home/data/dto/weather/weather_dto.dart';
+
 abstract class IHomeDatasource {
-  Future<Map<String, dynamic>> getWeather(double latitude, double longitude);
+  Future<WeatherDto> getWeather(double latitude, double longitude);
 }

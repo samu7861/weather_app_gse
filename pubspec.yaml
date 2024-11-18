@@ -18,8 +18,13 @@ dependencies:
   geolocator: ^12.0.0
   json_annotation: ^4.9.0
   permission_handler: ^11.3.1
+  get_it: ^7.2.0
+  injectable: ^2.4.4
+  either_dart:
 
 dev_dependencies:
+  injectable_generator:
+  
   freezed: ^2.4.7
   json_serializable:
   build_runner: ^2.4.8

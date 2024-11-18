@@ -24,31 +24,27 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
   }
 
   FutureOr<void> _onGetPermissions(
-      _GetPermissions event, Emitter<WelcomeState> emit) async {
+    _GetPermissions event, Emitter<WelcomeState> emit) async {
     emit(state.copyWith(isLoading: true));
-
+  
     try {
       final status = await Permission.location.status;
       if (status.isGranted) {
-        final position = await Geolocator.getCurrentPosition();
-        emit(
-          state.copyWith(
-            isLoading: true,
-            isPermissionGranted: true,
-            position: position,
-          ),
-        );
-        return;
-      }
-
-      final result = await Permission.location.request();
-      if (result.isGranted) {
-        final position = await Geolocator.getCurrentPosition();
         emit(
           state.copyWith(
             isLoading: false,
             isPermissionGranted: true,
-            position: position,
+          ),
+        );
+        return;
+      }
+  
+      final result = await Permission.location.request();
+      if (result.isGranted) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            isPermissionGranted: true,
           ),
         );
       } else if (result.isPermanentlyDenied) {
@@ -75,4 +71,5 @@ class WelcomeBloc extends Bloc<WelcomeEvent, WelcomeState> {
       );
     }
   }
+
 }

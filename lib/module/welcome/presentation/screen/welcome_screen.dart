@@ -18,9 +18,9 @@ class WelcomeScreen extends StatelessWidget {
       body: BlocListener<WelcomeBloc, WelcomeState>(
         listener: (context, state) {
           if (state.isPermissionGranted == true) {
-            if (state.position != null) {
-              context.router.push(HomeRoute(position: state.position!));
-            }
+            context.router.push(
+              const HomeRoute(),
+            );
           }
         },
         child: BlocBuilder<WelcomeBloc, WelcomeState>(

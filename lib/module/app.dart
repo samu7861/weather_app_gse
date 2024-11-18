@@ -7,6 +7,8 @@ import '../config/flavor/flavors.dart';
 import '../config/routes/auto_observer.dart';
 import '../config/routes/auto_router_manager.dart';
 import '../config/theme/app_theme.dart';
+import 'home/data/datasource/home_datasource.dart';
+import 'home/data/repository/home_repository.dart';
 import 'welcome/presentation/bloc/welcome_bloc.dart';
 
 class Root extends StatelessWidget {
@@ -23,7 +25,11 @@ class Root extends StatelessWidget {
           create: (context) => WelcomeBloc(),
         ),
         BlocProvider(
-          create: (context) => HomeBloc(),
+          create: (context) => HomeBloc(
+            repository: HomeRepository(
+              datasource: HomeDatasource(),
+            ),
+          ),
         ),
       ],
       child: const App(),
