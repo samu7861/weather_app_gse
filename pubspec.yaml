@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   auto_route: ^8.0.3
+  dio: ^5.7.0
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
