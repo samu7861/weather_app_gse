@@ -27,10 +27,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(isLoading: true, hasStarted: true));
 
     add(const HomeEvent.getPosition());
-
-    add(const HomeEvent.getWeather());
-
-    emit(state.copyWith(isLoading: false));
   }
 
   FutureOr<void> _onGetPosition(
@@ -41,8 +37,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
 
       emit(state.copyWith(position: position));
+      add(const HomeEvent.getWeather());
     } catch (e) {
-      emit(state.copyWith(error: e.toString()));
+      emit(
+        state.copyWith(error: e.toString(), isLoading: false),
+      );
     }
   }
 
@@ -53,12 +52,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         final weather = await _repository.getWeather(
             state.position!.latitude, state.position!.longitude);
 
-        emit(state.copyWith(weather: weather));
+        emit(state.copyWith(weather: weather, isLoading: false));
       } else {
         emit(state.copyWith(error: 'Position is null'));
       }
     } catch (e) {
-      emit(state.copyWith(error: e.toString()));
+      emit(state.copyWith(error: e.toString(), isLoading: false));
     }
   }
 }

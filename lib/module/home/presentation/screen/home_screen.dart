@@ -151,6 +151,8 @@ class HomeScreen extends StatelessWidget {
         Text('Timezone: ${state.weather?.timezone}'),
         Text(
             'Date: ${DateTime.fromMillisecondsSinceEpoch((state.weather?.dt ?? 0) * 1000)}'),
+        const Divider(),
+        Text('Coord: ${state.position?.latitude}, ${state.position?.longitude}'),
       ],
     );
   }
