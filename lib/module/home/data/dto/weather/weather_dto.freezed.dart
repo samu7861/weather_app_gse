@@ -24,14 +24,14 @@ WeatherDto _$WeatherDtoFromJson(
 
 /// @nodoc
 mixin _$WeatherDto {
-  String? get description => throw _privateConstructorUsedError;
-  String? get icon => throw _privateConstructorUsedError;
-  double? get temperature => throw _privateConstructorUsedError;
-  double? get feelsLike => throw _privateConstructorUsedError;
-  double? get minTemperature => throw _privateConstructorUsedError;
-  double? get maxTemperature => throw _privateConstructorUsedError;
-  int? get humidity => throw _privateConstructorUsedError;
-  double? get windSpeed => throw _privateConstructorUsedError;
+  WeatherCoordDto? get coord => throw _privateConstructorUsedError;
+  List<WeatherConditionDto>? get weather => throw _privateConstructorUsedError;
+  WeatherMainDto? get main => throw _privateConstructorUsedError;
+  WeatherWindDto? get wind => throw _privateConstructorUsedError;
+  int? get visibility => throw _privateConstructorUsedError;
+  int? get dt => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  int? get timezone => throw _privateConstructorUsedError;
 
   /// Serializes this WeatherDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,15 +42,16 @@ mixin _$WeatherDto {
 @JsonSerializable(includeIfNull: false)
 class _$WeatherDtoImpl extends _WeatherDto {
   const _$WeatherDtoImpl(
-      {this.description,
-      this.icon,
-      this.temperature,
-      this.feelsLike,
-      this.minTemperature,
-      this.maxTemperature,
-      this.humidity,
-      this.windSpeed})
-      : super._();
+      {this.coord,
+      final List<WeatherConditionDto>? weather,
+      this.main,
+      this.wind,
+      this.visibility,
+      this.dt,
+      this.name,
+      this.timezone})
+      : _weather = weather,
+        super._();
 
   factory _$WeatherDtoImpl.fromJson(
     Map<String, dynamic> json,
@@ -60,25 +61,33 @@ class _$WeatherDtoImpl extends _WeatherDto {
       );
 
   @override
-  final String? description;
+  final WeatherCoordDto? coord;
+  final List<WeatherConditionDto>? _weather;
   @override
-  final String? icon;
+  List<WeatherConditionDto>? get weather {
+    final value = _weather;
+    if (value == null) return null;
+    if (_weather is EqualUnmodifiableListView) return _weather;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
-  final double? temperature;
+  final WeatherMainDto? main;
   @override
-  final double? feelsLike;
+  final WeatherWindDto? wind;
   @override
-  final double? minTemperature;
+  final int? visibility;
   @override
-  final double? maxTemperature;
+  final int? dt;
   @override
-  final int? humidity;
+  final String? name;
   @override
-  final double? windSpeed;
+  final int? timezone;
 
   @override
   String toString() {
-    return 'WeatherDto(description: $description, icon: $icon, temperature: $temperature, feelsLike: $feelsLike, minTemperature: $minTemperature, maxTemperature: $maxTemperature, humidity: $humidity, windSpeed: $windSpeed)';
+    return 'WeatherDto(coord: $coord, weather: $weather, main: $main, wind: $wind, visibility: $visibility, dt: $dt, name: $name, timezone: $timezone)';
   }
 
   @override
@@ -86,27 +95,30 @@ class _$WeatherDtoImpl extends _WeatherDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherDtoImpl &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.temperature, temperature) ||
-                other.temperature == temperature) &&
-            (identical(other.feelsLike, feelsLike) ||
-                other.feelsLike == feelsLike) &&
-            (identical(other.minTemperature, minTemperature) ||
-                other.minTemperature == minTemperature) &&
-            (identical(other.maxTemperature, maxTemperature) ||
-                other.maxTemperature == maxTemperature) &&
-            (identical(other.humidity, humidity) ||
-                other.humidity == humidity) &&
-            (identical(other.windSpeed, windSpeed) ||
-                other.windSpeed == windSpeed));
+            (identical(other.coord, coord) || other.coord == coord) &&
+            const DeepCollectionEquality().equals(other._weather, _weather) &&
+            (identical(other.main, main) || other.main == main) &&
+            (identical(other.wind, wind) || other.wind == wind) &&
+            (identical(other.visibility, visibility) ||
+                other.visibility == visibility) &&
+            (identical(other.dt, dt) || other.dt == dt) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.timezone, timezone) ||
+                other.timezone == timezone));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, description, icon, temperature,
-      feelsLike, minTemperature, maxTemperature, humidity, windSpeed);
+  int get hashCode => Object.hash(
+      runtimeType,
+      coord,
+      const DeepCollectionEquality().hash(_weather),
+      main,
+      wind,
+      visibility,
+      dt,
+      name,
+      timezone);
 
   @override
   Map<String, dynamic> toJson() {
@@ -118,14 +130,14 @@ class _$WeatherDtoImpl extends _WeatherDto {
 
 abstract class _WeatherDto extends WeatherDto {
   const factory _WeatherDto(
-      {final String? description,
-      final String? icon,
-      final double? temperature,
-      final double? feelsLike,
-      final double? minTemperature,
-      final double? maxTemperature,
-      final int? humidity,
-      final double? windSpeed}) = _$WeatherDtoImpl;
+      {final WeatherCoordDto? coord,
+      final List<WeatherConditionDto>? weather,
+      final WeatherMainDto? main,
+      final WeatherWindDto? wind,
+      final int? visibility,
+      final int? dt,
+      final String? name,
+      final int? timezone}) = _$WeatherDtoImpl;
   const _WeatherDto._() : super._();
 
   factory _WeatherDto.fromJson(
@@ -133,19 +145,19 @@ abstract class _WeatherDto extends WeatherDto {
   ) = _$WeatherDtoImpl.fromJson;
 
   @override
-  String? get description;
+  WeatherCoordDto? get coord;
   @override
-  String? get icon;
+  List<WeatherConditionDto>? get weather;
   @override
-  double? get temperature;
+  WeatherMainDto? get main;
   @override
-  double? get feelsLike;
+  WeatherWindDto? get wind;
   @override
-  double? get minTemperature;
+  int? get visibility;
   @override
-  double? get maxTemperature;
+  int? get dt;
   @override
-  int? get humidity;
+  String? get name;
   @override
-  double? get windSpeed;
+  int? get timezone;
 }

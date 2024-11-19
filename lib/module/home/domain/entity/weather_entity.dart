@@ -1,35 +1,39 @@
 import 'package:equatable/equatable.dart';
+import 'weather_coord_entity.dart';
+import 'weather_condition_entity.dart';
+import 'weather_main_entity.dart';
+import 'weather_wind_entity.dart';
 
 class WeatherEntity extends Equatable {
-  final String description;
-  final String icon;
-  final double temperature;
-  final double feelsLike;
-  final double minTemperature;
-  final double maxTemperature;
-  final int humidity;
-  final double windSpeed;
+  final WeatherCoordEntity? coord;
+  final List<WeatherConditionEntity>? weather;
+  final WeatherMainEntity? main;
+  final WeatherWindEntity? wind;
+  final int? visibility;
+  final int? dt;
+  final String? name;
+  final int? timezone;
 
   const WeatherEntity({
-    required this.description,
-    required this.icon,
-    required this.temperature,
-    required this.feelsLike,
-    required this.minTemperature,
-    required this.maxTemperature,
-    required this.humidity,
-    required this.windSpeed,
+    required this.coord,
+    required this.weather,
+    required this.main,
+    required this.wind,
+    required this.visibility,
+    required this.dt,
+    required this.name,
+    required this.timezone,
   });
 
   @override
   List<Object?> get props => [
-        description,
-        icon,
-        temperature,
-        feelsLike,
-        minTemperature,
-        maxTemperature,
-        humidity,
-        windSpeed,
+        coord,
+        weather,
+        main,
+        wind,
+        visibility,
+        dt,
+        name,
+        timezone,
       ];
 }

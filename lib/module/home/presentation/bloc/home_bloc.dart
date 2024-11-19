@@ -20,62 +20,45 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         super(HomeState.initial()) {
     on<_Started>(_onStarted);
     on<_GetWeather>(_onGetWeather);
+    on<_GetPosition>(_onGetPosition);
   }
 
   FutureOr<void> _onStarted(_Started event, Emitter<HomeState> emit) async {
-    emit(
-      state.copyWith(
-        isLoading: true,
-      ),
-    );
+    emit(state.copyWith(isLoading: true, hasStarted: true));
 
-    await _onGetWeather(_GetWeather(), emit);
+    add(const HomeEvent.getPosition());
 
-    emit(
-      state.copyWith(
-        isLoading: false,
-      ),
-    );
+    add(const HomeEvent.getWeather());
+
+    emit(state.copyWith(isLoading: false));
   }
 
-  FutureOr<void> _onGetWeather(_GetWeather event, Emitter<HomeState> emit) async {
-    emit(
-      state.copyWith(
-        isLoading: true,
-      ),
-    );
-
-    
+  FutureOr<void> _onGetPosition(
+      _GetPosition event, Emitter<HomeState> emit) async {
     try {
-      // Obtener la ubicación actual
       final position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
 
-      emit(
-        state.copyWith(
-          isLoading: true,
-          position: position,
-        ),
-      );
-
-      // Obtener el clima basado en la ubicación
-      final weather = await _repository.getWeather(position.latitude, position.longitude);
-
-      emit(
-        state.copyWith(
-          isLoading: true,
-          weather: weather,
-        ),
-      );
+      emit(state.copyWith(position: position));
     } catch (e) {
-      emit(
-        state.copyWith(
-          isLoading: true,
-        ),
-      );
+      emit(state.copyWith(error: e.toString()));
     }
+  }
 
-    // final weather = _repository.getWeather();
+  FutureOr<void> _onGetWeather(
+      _GetWeather event, Emitter<HomeState> emit) async {
+    try {
+      if (state.position != null) {
+        final weather = await _repository.getWeather(
+            state.position!.latitude, state.position!.longitude);
+
+        emit(state.copyWith(weather: weather));
+      } else {
+        emit(state.copyWith(error: 'Position is null'));
+      }
+    } catch (e) {
+      emit(state.copyWith(error: e.toString()));
+    }
   }
 }

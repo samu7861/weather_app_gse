@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 
-import '../../../../config/flavor/flavors.dart';
+// import '../../../../config/flavor/flavors.dart';
 import '../bloc/home_bloc.dart';
 
 @RoutePage()
@@ -15,41 +14,42 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<HomeBloc>().state;
+    context.read<HomeBloc>().add(const HomeEvent.started());
 
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        context.read<HomeBloc>().add(const HomeEvent.started());
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Weather App"),
+        automaticallyImplyLeading: false,
+      ),
+      body: SizedBox.expand(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-        return Scaffold(
-          body: SizedBox.expand(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.,
+              return Column(
                 children: [
-                  const Text('Home'),
-                  Text(F.title),
-                  Text('Latitude: ${state.position?.latitude}'),
-                  Text('Longitude: ${state.position?.longitude}'),
-                  Text('Altitude: ${state.position?.altitude}'),
-                  Text('Accuracy: ${state.position?.accuracy}'),
-                  Text('Heading: ${state.position?.heading}'),
-                  Text('Speed: ${state.position?.speed}'),
-                  Text('Speed Accuracy: ${state.position?.speedAccuracy}'),
-                  const Divider(),
-                  Text('Temperature: ${state.weather?.temperature}°C'),
-                  Text('Weather: ${state.weather?.description}'),
-                  Text('Humidity: ${state.weather?.humidity}%'),
-                  Text('Wind Speed: ${state.weather?.windSpeed} m/s'),
-                  //
+                  Text(
+                    "This is your current location: ${state.position?.latitude}, ${state.position?.longitude} ",
+                  ),
+                  Text(
+                    "This is your CITY: ${state.weather?.name} ",
+                  ),
+                  Text(
+                    state.weather?.wind?.speed?.toString() ?? 'N/A',
+                  )
+                  // Text(
+                  //   "This is your TEMP: ${state.weather!.main?.temp } ",
+                  // ),
                 ],
-              ),
-            ),
+              );
+            },
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

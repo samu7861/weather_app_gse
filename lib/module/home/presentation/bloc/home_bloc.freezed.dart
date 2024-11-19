@@ -20,18 +20,21 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getWeather,
+    required TResult Function() getPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getWeather,
+    TResult? Function()? getPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getWeather,
+    TResult Function()? getPosition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$HomeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetWeather value) getWeather,
+    required TResult Function(_GetPosition value) getPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetWeather value)? getWeather,
+    TResult? Function(_GetPosition value)? getPosition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetWeather value)? getWeather,
+    TResult Function(_GetPosition value)? getPosition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +125,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getWeather,
+    required TResult Function() getPosition,
   }) {
     return started();
   }
@@ -128,6 +135,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getWeather,
+    TResult? Function()? getPosition,
   }) {
     return started?.call();
   }
@@ -137,6 +145,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getWeather,
+    TResult Function()? getPosition,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -150,6 +159,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetWeather value) getWeather,
+    required TResult Function(_GetPosition value) getPosition,
   }) {
     return started(this);
   }
@@ -159,6 +169,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetWeather value)? getWeather,
+    TResult? Function(_GetPosition value)? getPosition,
   }) {
     return started?.call(this);
   }
@@ -168,6 +179,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetWeather value)? getWeather,
+    TResult Function(_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -224,6 +236,7 @@ class _$GetWeatherImpl implements _GetWeather {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getWeather,
+    required TResult Function() getPosition,
   }) {
     return getWeather();
   }
@@ -233,6 +246,7 @@ class _$GetWeatherImpl implements _GetWeather {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getWeather,
+    TResult? Function()? getPosition,
   }) {
     return getWeather?.call();
   }
@@ -242,6 +256,7 @@ class _$GetWeatherImpl implements _GetWeather {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getWeather,
+    TResult Function()? getPosition,
     required TResult orElse(),
   }) {
     if (getWeather != null) {
@@ -255,6 +270,7 @@ class _$GetWeatherImpl implements _GetWeather {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetWeather value) getWeather,
+    required TResult Function(_GetPosition value) getPosition,
   }) {
     return getWeather(this);
   }
@@ -264,6 +280,7 @@ class _$GetWeatherImpl implements _GetWeather {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetWeather value)? getWeather,
+    TResult? Function(_GetPosition value)? getPosition,
   }) {
     return getWeather?.call(this);
   }
@@ -273,6 +290,7 @@ class _$GetWeatherImpl implements _GetWeather {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetWeather value)? getWeather,
+    TResult Function(_GetPosition value)? getPosition,
     required TResult orElse(),
   }) {
     if (getWeather != null) {
@@ -287,10 +305,123 @@ abstract class _GetWeather implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$GetPositionImplCopyWith<$Res> {
+  factory _$$GetPositionImplCopyWith(
+          _$GetPositionImpl value, $Res Function(_$GetPositionImpl) then) =
+      __$$GetPositionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetPositionImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetPositionImpl>
+    implements _$$GetPositionImplCopyWith<$Res> {
+  __$$GetPositionImplCopyWithImpl(
+      _$GetPositionImpl _value, $Res Function(_$GetPositionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetPositionImpl implements _GetPosition {
+  const _$GetPositionImpl();
+
+  @override
+  String toString() {
+    return 'HomeEvent.getPosition()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetPositionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getWeather,
+    required TResult Function() getPosition,
+  }) {
+    return getPosition();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getWeather,
+    TResult? Function()? getPosition,
+  }) {
+    return getPosition?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getWeather,
+    TResult Function()? getPosition,
+    required TResult orElse(),
+  }) {
+    if (getPosition != null) {
+      return getPosition();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetWeather value) getWeather,
+    required TResult Function(_GetPosition value) getPosition,
+  }) {
+    return getPosition(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetWeather value)? getWeather,
+    TResult? Function(_GetPosition value)? getPosition,
+  }) {
+    return getPosition?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetWeather value)? getWeather,
+    TResult Function(_GetPosition value)? getPosition,
+    required TResult orElse(),
+  }) {
+    if (getPosition != null) {
+      return getPosition(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetPosition implements HomeEvent {
+  const factory _GetPosition() = _$GetPositionImpl;
+}
+
+/// @nodoc
 mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
+  bool? get hasStarted => throw _privateConstructorUsedError;
   WeatherEntity? get weather => throw _privateConstructorUsedError;
   Position? get position => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -304,7 +435,12 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({bool isLoading, WeatherEntity? weather, Position? position});
+  $Res call(
+      {bool isLoading,
+      bool? hasStarted,
+      WeatherEntity? weather,
+      Position? position,
+      String? error});
 }
 
 /// @nodoc
@@ -323,14 +459,20 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? hasStarted = freezed,
     Object? weather = freezed,
     Object? position = freezed,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      hasStarted: freezed == hasStarted
+          ? _value.hasStarted
+          : hasStarted // ignore: cast_nullable_to_non_nullable
+              as bool?,
       weather: freezed == weather
           ? _value.weather
           : weather // ignore: cast_nullable_to_non_nullable
@@ -339,6 +481,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as Position?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -351,7 +497,12 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, WeatherEntity? weather, Position? position});
+  $Res call(
+      {bool isLoading,
+      bool? hasStarted,
+      WeatherEntity? weather,
+      Position? position,
+      String? error});
 }
 
 /// @nodoc
@@ -368,14 +519,20 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? hasStarted = freezed,
     Object? weather = freezed,
     Object? position = freezed,
+    Object? error = freezed,
   }) {
     return _then(_$HomeStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      hasStarted: freezed == hasStarted
+          ? _value.hasStarted
+          : hasStarted // ignore: cast_nullable_to_non_nullable
+              as bool?,
       weather: freezed == weather
           ? _value.weather
           : weather // ignore: cast_nullable_to_non_nullable
@@ -384,6 +541,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as Position?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -391,19 +552,28 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeStateImpl extends _HomeState {
-  _$HomeStateImpl({required this.isLoading, this.weather, this.position})
+  _$HomeStateImpl(
+      {required this.isLoading,
+      this.hasStarted,
+      this.weather,
+      this.position,
+      this.error})
       : super._();
 
   @override
   final bool isLoading;
   @override
+  final bool? hasStarted;
+  @override
   final WeatherEntity? weather;
   @override
   final Position? position;
+  @override
+  final String? error;
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, weather: $weather, position: $position)';
+    return 'HomeState(isLoading: $isLoading, hasStarted: $hasStarted, weather: $weather, position: $position, error: $error)';
   }
 
   @override
@@ -413,13 +583,17 @@ class _$HomeStateImpl extends _HomeState {
             other is _$HomeStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.hasStarted, hasStarted) ||
+                other.hasStarted == hasStarted) &&
             (identical(other.weather, weather) || other.weather == weather) &&
             (identical(other.position, position) ||
-                other.position == position));
+                other.position == position) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, weather, position);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, hasStarted, weather, position, error);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -433,16 +607,22 @@ class _$HomeStateImpl extends _HomeState {
 abstract class _HomeState extends HomeState {
   factory _HomeState(
       {required final bool isLoading,
+      final bool? hasStarted,
       final WeatherEntity? weather,
-      final Position? position}) = _$HomeStateImpl;
+      final Position? position,
+      final String? error}) = _$HomeStateImpl;
   _HomeState._() : super._();
 
   @override
   bool get isLoading;
   @override
+  bool? get hasStarted;
+  @override
   WeatherEntity? get weather;
   @override
   Position? get position;
+  @override
+  String? get error;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
