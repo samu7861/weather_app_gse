@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:weather_app_gse/config/routes/app_router.dart';
 
 // import '../../../../config/flavor/flavors.dart';
 import '../bloc/home_bloc.dart';
@@ -17,60 +18,90 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<HomeBloc>().add(const HomeEvent.started());
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Weather App"),
-        automaticallyImplyLeading: false,
-      ),
-      body: SizedBox.expand(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          child: BlocBuilder<HomeBloc, HomeState>(
-            builder: (context, state) {
-              if (state.isLoading) {
-                return const Center(child: CircularProgressIndicator());
-              }
+    return AutoTabsRouter(
+      routes: const [
+        HomeRoute(),
+        SearchRoute(),
+        FavoritesRoute(),
+      ],
+      builder: (context, child) {
+        final tabsRouter = AutoTabsRouter.of(context);
 
-              return Column(
-                children: [
-                  Text(
-                    state.weather?.name ?? 'Unknown Location',
-                    style: const TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  if (state.weather?.weather?.isNotEmpty ?? false)
-                    _buildLottieAnimation(state.weather!.weather!.first.icon),
-                  const SizedBox(height: 20),
-                  Text(
-                    '${state.weather?.main?.temp?.toStringAsFixed(1)}°C',
-                    style: const TextStyle(
-                      fontSize: 48,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    state.weather?.weather?.first.description ?? '',
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  _buildWeatherDetails(state),
-                ],
-              );
-            },
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text("Weather App"),
+            automaticallyImplyLeading: false,
           ),
-        ),
-      ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: tabsRouter.activeIndex,
+            onTap: tabsRouter.setActiveIndex,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: 'Buscar',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: 'Favoritos',
+              ),
+            ],
+          ),
+          body: SizedBox.expand(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  return Column(
+                    children: [
+                      Text(
+                        state.weather?.name ?? 'Unknown Location',
+                        style: const TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      if (state.weather?.weather?.isNotEmpty ?? false)
+                        _buildLottieAnimation(
+                            state.weather!.weather!.first.icon),
+                      const SizedBox(height: 20),
+                      Text(
+                        '${state.weather?.main?.temp?.toStringAsFixed(1)}°C',
+                        style: const TextStyle(
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        state.weather?.weather?.first.description ?? '',
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      _buildWeatherDetails(state),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
-   Widget _buildLottieAnimation(String? icon) {
+  Widget _buildLottieAnimation(String? icon) {
     String animationPath;
     switch (icon) {
       case '01d':
@@ -105,8 +136,9 @@ class HomeScreen extends StatelessWidget {
   Widget _buildWeatherDetails(HomeState state) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-       children: [
-        Text('Feels like: ${state.weather?.main?.feelsLike?.toStringAsFixed(1)}°C'),
+      children: [
+        Text(
+            'Feels like: ${state.weather?.main?.feelsLike?.toStringAsFixed(1)}°C'),
         Text('Min Temp: ${state.weather?.main?.tempMin?.toStringAsFixed(1)}°C'),
         Text('Max Temp: ${state.weather?.main?.tempMax?.toStringAsFixed(1)}°C'),
         Text('Humidity: ${state.weather?.main?.humidity}%'),
@@ -117,7 +149,8 @@ class HomeScreen extends StatelessWidget {
           Text('Wind Gust: ${state.weather?.wind?.gust} m/s'),
         Text('Visibility: ${state.weather?.visibility} m'),
         Text('Timezone: ${state.weather?.timezone}'),
-        Text('Date: ${DateTime.fromMillisecondsSinceEpoch((state.weather?.dt ?? 0) * 1000)}'),
+        Text(
+            'Date: ${DateTime.fromMillisecondsSinceEpoch((state.weather?.dt ?? 0) * 1000)}'),
       ],
     );
   }
