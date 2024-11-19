@@ -70,42 +70,30 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLottieAnimation(String? icon) {
+   Widget _buildLottieAnimation(String? icon) {
     String animationPath;
     switch (icon) {
       case '01d':
-        animationPath = 'assets/lottie/sunny.json';
-        break;
       case '01n':
-        animationPath = 'assets/lottie/clear_night.json';
+        animationPath = 'assets/lottie/sunny.json';
         break;
       case '02d':
       case '02n':
-        animationPath = 'assets/lottie/partly_cloudy.json';
-        break;
       case '03d':
       case '03n':
       case '04d':
       case '04n':
-        animationPath = 'assets/lottie/sunny.json';
+        animationPath = 'assets/lottie/rainy.json';
         break;
       case '09d':
       case '09n':
       case '10d':
       case '10n':
-        animationPath = 'assets/lottie/rain.json';
+        animationPath = 'assets/lottie/rainy2.json';
         break;
       case '11d':
       case '11n':
-        animationPath = 'assets/lottie/thunderstorm.json';
-        break;
-      case '13d':
-      case '13n':
-        animationPath = 'assets/lottie/snow.json';
-        break;
-      case '50d':
-      case '50n':
-        animationPath = 'assets/lottie/mist.json';
+        animationPath = 'assets/lottie/superrainy.json';
         break;
       default:
         animationPath = 'assets/lottie/sunny.json';
